@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Studio Của Khang</title>
+<meta name="description" content="Chỉnh ảnh, chỉnh video và ghép mặt ngay trên điện thoại. Ảnh không rời khỏi máy.">
+<meta name="theme-color" content="#0e0e10">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Studio">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<!-- ================= TRANG CHỦ ================= -->
+<div id="home" class="view active">
+  <div class="home-inner">
+    <header class="home-head">
+      <img src="icons/icon-192.png" alt="" class="home-logo">
+      <div>
+        <h1>Studio Của Khang</h1>
+        <p>Chỉnh ảnh, video và ghép mặt ngay trên máy — không tải lên máy chủ.</p>
+      </div>
+    </header>
+    <div class="tiles">
+      <button class="tile t-photo" data-go="photo">
+        <span class="tile-ic" data-icon="photo"></span>
+        <b>Chỉnh Ảnh</b><span class="tile-sub">Như Lightroom · 51 công thức màu · XMP & LUT</span>
+      </button>
+      <button class="tile t-video" data-go="video">
+        <span class="tile-ic" data-icon="video"></span>
+        <b>Chỉnh Video</b><span class="tile-sub">Màu, công thức, cắt đoạn, tốc độ, nhạc nền</span>
+      </button>
+      <button class="tile t-face" data-go="face">
+        <span class="tile-ic" data-icon="face"></span>
+        <b>Ghép Mặt</b><span class="tile-sub">Đổi mặt bằng AI, luôn là bản mới nhất</span>
+      </button>
+    </div>
+    <div class="home-note">
+      <b>Mẹo:</b> Bạn có thể tải preset Lightroom miễn phí trên mạng (tệp <code>.xmp</code>) hoặc LUT màu (<code>.cube</code>) rồi nhập vào mục <i>Công thức → Nhập</i>. Ảnh và video của bạn không bao giờ rời khỏi điện thoại.
+    </div>
+    <div id="installHint" class="home-note install" hidden>
+      <b>Cài như ứng dụng:</b> trong Safari bấm nút <b>Chia sẻ</b> rồi chọn <b>“Thêm vào MH chính”</b>.
+    </div>
+  </div>
+  <nav class="home-tabs">
+    <button class="on" data-go="home"><span data-icon="home"></span>Trang chủ</button>
+    <button data-go="photo"><span data-icon="photo"></span>Ảnh</button>
+    <button data-go="video"><span data-icon="video"></span>Video</button>
+    <button data-go="face"><span data-icon="face"></span>Ghép mặt</button>
+  </nav>
+</div>
+
+<!-- ================= TRÌNH CHỈNH SỬA (ẢNH + VIDEO) ================= -->
+<div id="editor" class="view mode-photo">
+  <header class="topbar">
+    <button class="ib" id="btnBack" aria-label="Về trang chủ"><span data-icon="back"></span></button>
+    <div class="tb-title" id="edTitle">Chỉnh Ảnh</div>
+    <button class="ib" id="btnOpen" aria-label="Mở tệp"><span data-icon="open"></span></button>
+    <button class="ib" id="btnUndo" aria-label="Hoàn tác" disabled><span data-icon="undo"></span></button>
+    <button class="ib" id="btnRedo" aria-label="Làm lại" disabled><span data-icon="redo"></span></button>
+    <button class="ib" id="btnCompare" aria-label="So sánh trước/sau"><span data-icon="compare"></span></button>
+    <button class="pill" id="btnExport">Lưu</button>
+  </header>
+  <main class="stage" id="stage">
+    <div class="canvas-box" id="canvasBox">
+      <canvas id="gl"></canvas>
+      <div class="split" id="split" hidden><div class="split-line"></div><div class="split-knob">‹ ›</div><span class="tag l">Trước</span><span class="tag r">Sau</span></div>
+      <div class="crop" id="crop" hidden>
+        <div class="crop-rect" id="cropRect">
+          <i class="g g1"></i><i class="g g2"></i><i class="g g3"></i><i class="g g4"></i>
+          <b class="h tl" data-h="tl"></b><b class="h tr" data-h="tr"></b><b class="h bl" data-h="bl"></b><b class="h br" data-h="br"></b>
+        </div>
+      </div>
+      <div class="hold-tag" id="holdTag" hidden>Ảnh gốc</div>
+    </div>
+    <canvas id="histo" width="256" height="96" title="Biểu đồ histogram"></canvas>
+    <div class="empty" id="empty">
+      <div class="empty-ic" data-icon="photo"></div>
+      <p id="emptyText">Chọn một ảnh từ điện thoại để bắt đầu chỉnh</p>
+      <button class="pill big" id="btnPick">Chọn ảnh</button>
+      <small id="emptyHint">Ảnh được xử lý ngay trên máy, không tải lên Internet.</small>
+    </div>
+    <div class="busy" id="busy" hidden><div class="spin"></div><p id="busyText">Đang xử lý…</p><div class="bar"><i id="busyBar"></i></div><button class="pill ghost" id="busyCancel" hidden>Hủy</button></div>
+  </main>
+  <div class="vbar" id="vbar">
+    <button class="ib" id="vPlay" aria-label="Phát"><span data-icon="play"></span></button>
+    <input type="range" id="vSeek" min="0" max="1000" value="0" step="1" aria-label="Tua">
+    <span id="vTime">0:00 / 0:00</span>
+  </div>
+  <aside class="panel">
+    <section class="panel-body" id="panelBody"></section>
+    <nav class="tabs" id="tabs"></nav>
+  </aside>
+</div>
+
+<!-- ================= GHÉP MẶT ================= -->
+<div id="face" class="view">
+  <header class="topbar">
+    <button class="ib" id="faceBack" aria-label="Về trang chủ"><span data-icon="back"></span></button>
+    <div class="tb-title">Ghép Mặt</div>
+    <button class="pill ghost" id="faceToPhoto">Chuyển sang Chỉnh Ảnh</button>
+  </header>
+  <iframe id="faceFrame" title="Ghép Mặt" allow="camera; clipboard-write; web-share; fullscreen" referrerpolicy="no-referrer"></iframe>
+</div>
+
+<!-- Bảng xuất -->
+<div class="sheet-wrap" id="sheetWrap" hidden>
+  <div class="sheet" id="sheet"></div>
+</div>
+<div class="modal-wrap" id="modalWrap" hidden><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<input type="file" id="filePhoto" accept="image/*,.heic,.heif" hidden>
+<input type="file" id="fileVideo" accept="video/*" hidden>
+<input type="file" id="filePreset" multiple hidden>
+<input type="file" id="fileMusic" accept="audio/*" hidden>
+
+<script src="js/icons.js"></script>
+<script src="js/presets.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/importers.js"></script>
+<script src="js/store.js"></script>
+<script src="vendor/mp4-muxer.js"></script>
+<script src="js/video.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

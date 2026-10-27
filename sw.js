@@ -1,7 +1,7 @@
-/* Studio Của Khang – service worker: ưu tiên mạng, dự phòng bộ nhớ đệm khi ngoại tuyến */
-const CACHE = 'studio-v6';
+/* Pỏn của Khang – service worker: ưu tiên mạng, dự phòng bộ nhớ đệm khi ngoại tuyến */
+const CACHE = 'studio-v7';
 const CDN = 'studio-v3-cdn'; // giữ tên cũ để không phải tải lại thư viện MediaPipe
-const CORE = ['./', 'index.html', 'css/app.css', 'js/lock.js', 'js/icons.js', 'js/presets.js', 'js/engine.js', 'js/importers.js', 'js/store.js', 'js/video.js', 'js/app.js', 'js/face-lm.js', 'js/face-fx.js', 'js/face-presets.js', 'js/face-ui.js', 'vendor/mp4-muxer.js', 'manifest.webmanifest', 'robots.txt', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
+const CORE = ['./', 'index.html', 'css/app.css', 'js/lock.js', 'js/icons.js', 'js/presets.js', 'js/engine.js', 'js/importers.js', 'js/store.js', 'js/video.js', 'js/app.js', 'js/face-lm.js', 'js/face-fx.js', 'js/face-presets.js', 'js/face-ui.js', 'vendor/mp4-muxer.js', 'manifest.webmanifest', 'robots.txt', 'icons/icon-192.png', 'icons/icon.svg', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE && k !== CDN).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {

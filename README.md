@@ -1,4 +1,4 @@
-# Studio Của Khang
+# Pỏn của Khang
 
 Ứng dụng web cài được (PWA) gồm 4 công cụ, chạy hoàn toàn trên máy (không có máy chủ):
 

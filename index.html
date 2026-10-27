@@ -3,22 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
-<title>Studio Của Khang</title>
+<title>Pỏn của Khang</title>
 <meta name="description" content="Chỉnh ảnh, chỉnh video, chỉnh mặt và ghép mặt ngay trên điện thoại. Ảnh không rời khỏi máy.">
 <meta name="theme-color" content="#0e0e10">
 <meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Studio">
+<meta name="apple-mobile-web-app-title" content="Pỏn của Khang">
 <meta name="format-detection" content="telephone=no">
 <meta name="robots" content="noindex,nofollow">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <link rel="stylesheet" href="css/app.css">
 <!-- Khóa PIN: phải nạp trước nội dung để màn hình khóa hiện đầu tiên -->
-<script src="js/lock.js" data-ns="studio" data-title="Studio Của Khang" data-icon="icons/icon-192.png"></script>
+<script src="js/lock.js" data-ns="studio" data-title="Pỏn của Khang" data-icon="icons/icon-192.png"></script>
 </head>
 <body>
 <!-- ================= TRANG CHỦ ================= -->
@@ -27,7 +28,7 @@
     <header class="home-head">
       <img src="icons/icon-192.png" alt="" class="home-logo">
       <div>
-        <h1>Studio Của Khang</h1>
+        <h1>Pỏn của Khang</h1>
         <p>Chỉnh ảnh, video, chỉnh mặt và ghép mặt ngay trên máy — không tải lên máy chủ.</p>
       </div>
       <div class="home-acts">
@@ -48,15 +49,8 @@
         <span class="tile-ic" data-icon="retouch"></span>
         <b>Chỉnh Mặt</b><span class="tile-sub">Mịn da, trang điểm, dáng mặt, râu &amp; nét nam</span>
       </button>
-      <button class="tile t-face" data-go="face">
-        <span class="tile-ic" data-icon="face"></span>
-        <b>Ghép Mặt AI</b><span class="tile-sub">Offline · lệnh tiếng Việt · khoá vùng mặt</span>
-      </button>
-      <button class="tile t-ai" data-go="ai">
-        <span class="tile-ic" data-icon="auto"></span>
-        <b>Tạo Ảnh AI</b><span class="tile-sub">Prompt tiếng Việt → ảnh · vẽ lại từ ảnh</span>
-      </button>
     </div>
+    <a class="ai-link" href="../studio-ai/" data-ai-link><img src="../studio-ai/icons/icon-192.png" alt="" width="28" height="28"><span><b>Mở Studio AI</b><small>Ghép mặt AI · tạo ảnh từ lệnh — app riêng</small></span><i>›</i></a>
     <div class="home-note">
       <b>Mẹo:</b> Bạn có thể tải preset Lightroom miễn phí trên mạng (tệp <code>.xmp</code>) hoặc LUT màu (<code>.cube</code>) rồi nhập vào mục <i>Công thức → Nhập</i>. Ảnh và video của bạn không bao giờ rời khỏi điện thoại.
     </div>
@@ -69,7 +63,6 @@
     <button data-go="photo"><span data-icon="photo"></span>Ảnh</button>
     <button data-go="video"><span data-icon="video"></span>Video</button>
     <button data-go="retouch"><span data-icon="retouch"></span>Chỉnh mặt</button>
-    <button data-go="face"><span data-icon="face"></span>AI</button>
   </nav>
 </div>
 

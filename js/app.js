@@ -106,7 +106,7 @@
     else if (where === 'face' || where === 'ai') {
       // Studio AI (ghép mặt + tạo ảnh offline) — mở cùng tab để giữ khoá PIN & chế độ cross-origin isolation
       if (!push) { showView('home'); return; } // quay lại bằng nút Back thì ở trang chủ, không tự mở lại
-      const u = new URL(where === 'ai' ? '../studio-ai/?tab=t2i' : '../studio-ai/', location.href).href;
+      const u = new URL('../studio-ai/', location.href).href;
       if (window.StudioLock && StudioLock.go) StudioLock.go(u); else location.href = u;
       return;
     } else if (where === 'retouch') {
@@ -116,6 +116,7 @@
   }
   window.addEventListener('popstate', () => go((location.hash || '#home').slice(1) || 'home', false));
   document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
+  document.querySelectorAll('[data-ai-link]').forEach(a => a.addEventListener('click', (e) => { if (window.StudioLock && StudioLock.go) { e.preventDefault(); StudioLock.go(a.href); } }));
   $('btnBack').onclick = () => go('home');
   $('faceBack').onclick = () => go('home');
 

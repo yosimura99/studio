@@ -16,6 +16,8 @@ code{background:#26262b;padding:1px 5px;border-radius:5px;font-size:.92em}
 .home-inner{flex:1;overflow:auto;padding:calc(var(--sat) + 22px) calc(18px + var(--sar)) 18px calc(18px + var(--sal));max-width:760px;width:100%;margin:0 auto}
 .home-head{display:flex;gap:14px;align-items:center;margin:6px 0 22px}
 .home-logo{width:58px;height:58px;border-radius:15px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.home-head>div:not(.home-acts){flex:1;min-width:0}
+.home-acts{display:flex;flex-direction:column;gap:2px;align-self:flex-start;color:var(--tx2)}
 .home-head h1{margin:0;font-size:24px;letter-spacing:-.3px}
 .home-head p{margin:3px 0 0;color:var(--tx2);font-size:13.5px}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}

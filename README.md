@@ -7,6 +7,8 @@
 3. **Chỉnh Mặt** – làm đẹp kiểu FaceApp: mịn da (giữ kết cấu), sáng/trắng da, xóa quầng thâm, xóa mụn (tự động + chạm), thon mặt, V-line, mắt to, mũi, miệng, cười nhẹ, trán, trắng răng, mắt sáng; trang điểm (son lì/bóng, má hồng, mày, phấn mắt, eyeliner, mi, tạo khối/bắt sáng); nét nam (jawline, mày dày, râu lấm tấm/quai nón, da nâu, giảm dầu, contour); 24 kiểu nữ + 14 kiểu nam có thanh mức độ (gồm các kiểu lấy cảm hứng từ mô tả bộ lọc FaceApp: Mịn lụa, Glow, Hollywood, Điện ảnh, Dễ thương, Ánh nhìn, Môi hôn, Râu rậm…); tự gợi ý bộ kiểu Nữ/Nam (đổi bằng một chạm); nhiều khuôn mặt – chạm để chọn; so sánh giữ/chia đôi; hoàn tác; xuất độ phân giải gốc; chuyển qua lại với Chỉnh Ảnh.
 4. **Ghép Mặt** – mở https://yosimura99.github.io/doi-mat/ toàn màn hình.
 
+**Khóa mã PIN** (`js/lock.js`, dùng lại được): lần đầu tạo mã 4–6 số (nhập 2 lần); mỗi lần mở cần nhập mã; chỉ lưu mã băm PBKDF2-SHA256 có muối trong localStorage; sai 5 lần phải chờ tăng dần (30 giây, 1, 2, 4… phút); tự khóa khi ở nền quá 5 phút; nút Khóa ngay và ⚙︎ (đổi mã PIN, Quên PIN, Face ID / Touch ID tùy chọn qua WebAuthn). Khóa chỉ ngăn người khác mở ứng dụng trên máy này – mã nguồn trên GitHub vẫn công khai. Dùng ở trang khác: `<script src="js/lock.js" data-ns="studio" data-title="…" data-icon="…"></script>` đặt trong `<head>`.
+
 Mở trên iPhone bằng Safari → Chia sẻ → “Thêm vào MH chính”.
 
 Thư viện: [mp4-muxer](https://github.com/Vanilagy/mp4-muxer) (MIT) trong `vendor/`; [@vladmandic/face-api](https://github.com/vladmandic/face-api) (MIT, mô hình age-gender) trong `vendor/faceapi/`; MediaPipe Face Landmarker (Apache-2.0) – mô hình `models/face_landmarker.task`, thư viện `@mediapipe/tasks-vision@0.10.21` tải từ jsDelivr lần đầu rồi được service worker lưu đệm.

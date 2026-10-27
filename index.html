@@ -12,10 +12,13 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Studio">
 <meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex,nofollow">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <link rel="stylesheet" href="css/app.css">
+<!-- Khóa PIN: phải nạp trước nội dung để màn hình khóa hiện đầu tiên -->
+<script src="js/lock.js" data-ns="studio" data-title="Studio Của Khang" data-icon="icons/icon-192.png"></script>
 </head>
 <body>
 <!-- ================= TRANG CHỦ ================= -->
@@ -26,6 +29,10 @@
       <div>
         <h1>Studio Của Khang</h1>
         <p>Chỉnh ảnh, video, chỉnh mặt và ghép mặt ngay trên máy — không tải lên máy chủ.</p>
+      </div>
+      <div class="home-acts">
+        <button class="ib" data-lock-now aria-label="Khóa ngay" title="Khóa ngay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></button>
+        <button class="ib" data-lock-settings aria-label="Cài đặt khóa" title="Cài đặt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></button>
       </div>
     </header>
     <div class="tiles">

@@ -103,10 +103,11 @@
   function go(where, push = true) {
     if (where !== 'video') pauseVideo();
     if (where === 'home') showView('home');
-    else if (where === 'face') {
-      const f = $('faceFrame');
-      if (!f.getAttribute('src')) f.src = 'https://yosimura99.github.io/doi-mat/';
-      showView('face');
+    else if (where === 'face' || where === 'ai') {
+      // Studio AI (ghép mặt + tạo ảnh offline) — mở cùng tab để giữ khoá PIN & chế độ cross-origin isolation
+      if (!push) { showView('home'); return; } // quay lại bằng nút Back thì ở trang chủ, không tự mở lại
+      location.href = new URL(where === 'ai' ? '../studio-ai/?tab=t2i' : '../studio-ai/', location.href).href;
+      return;
     } else if (where === 'retouch') {
       showView('retouch'); if (S.FaceUI) S.FaceUI.show();
     } else { setMode(where); showView('editor'); requestAnimationFrame(() => { scheduleRender(); }); }

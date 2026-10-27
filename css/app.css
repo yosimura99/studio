@@ -30,6 +30,8 @@ code{background:#26262b;padding:1px 5px;border-radius:5px;font-size:.92em}
 .t-photo{background:linear-gradient(135deg,#ff9a5a 0%,#e2557a 45%,#5b4bd6 100%)}
 .t-video{background:linear-gradient(140deg,#1fb5a8 0%,#2a6fd6 100%)}
 .t-face{background:linear-gradient(140deg,#a256e8 0%,#e0508f 100%)}
+.t-retouch{background:linear-gradient(140deg,#ff7e8a 0%,#f2a65a 100%)}
+.tiles .tile:last-child:nth-child(4){grid-column:1 / -1;min-height:120px}
 .home-note{margin-top:16px;padding:13px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;color:#c8c8cf;font-size:13.5px}
 .home-note.install{border-color:#2f4d73;background:#14202f}
 .home-tabs{display:flex;justify-content:space-around;border-top:1px solid var(--line);background:rgba(16,16,19,.96);padding:6px calc(6px + var(--sar)) calc(6px + var(--sab)) calc(6px + var(--sal))}
@@ -48,6 +50,7 @@ code{background:#26262b;padding:1px 5px;border-radius:5px;font-size:.92em}
 .pill.sm{padding:6px 12px;font-size:13px}
 .pill.danger{background:#5a2328;color:#ffb3b3}
 #editor{display:none}
+.mode-video #btnToRetouch{display:none}
 #editor.active{display:flex}
 .stage{position:relative;flex:1 1 auto;min-height:0;display:grid;place-items:center;background:#09090b;overflow:hidden;touch-action:none}
 .canvas-box{position:relative;line-height:0}
@@ -93,6 +96,10 @@ code{background:#26262b;padding:1px 5px;border-radius:5px;font-size:.92em}
   #editor .stage{grid-column:1;grid-row:2}
   #editor .vbar{grid-column:1;grid-row:3}
   #editor .panel{grid-column:2;grid-row:2 / 4;border-top:0;border-left:1px solid var(--line);min-height:0}
+  #retouch.active{display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto 1fr}
+  #retouch .topbar{grid-column:1 / -1}
+  #retouch .stage{grid-column:1;grid-row:2}
+  #retouch .panel{grid-column:2;grid-row:2;border-top:0;border-left:1px solid var(--line);min-height:0}
   .panel .tabs{order:-1;flex-wrap:wrap;border-top:0;border-bottom:1px solid var(--line);padding:6px}
   .tab{min-width:56px}
   .panel-body{height:auto;flex:1}
@@ -166,3 +173,19 @@ code{background:#26262b;padding:1px 5px;border-radius:5px;font-size:.92em}
 /* ---------- Face view ---------- */
 #face iframe{flex:1;border:0;width:100%;background:#000}
 #face .topbar{gap:6px}
+
+/* ---------- Chỉnh Mặt ---------- */
+.gseg{display:flex;background:var(--bg3);border-radius:999px;padding:2px;margin-right:4px;flex:0 0 auto}
+.gseg button{padding:5px 11px;border-radius:999px;font-size:13px;color:var(--tx2);line-height:1.2}
+.gseg button.on{background:#e8618c;color:#fff}
+.gseg button[data-g=m].on{background:#3d7fd9}
+#retouch .tb-title{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rt-faces{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s}.rt-faces.show{opacity:1}
+.rt-face{position:absolute;border:2px dashed rgba(255,255,255,.5);border-radius:38%}
+.rt-face.on{border:2px solid var(--ac);box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+#rtStage.healing .canvas-box{cursor:crosshair}
+.rt-thumbs{grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}
+.rt-dots{justify-content:flex-start;gap:9px;flex-wrap:wrap}
+.rt-dots .dot{width:28px;height:28px}
+.rt-heal{margin:4px 0 8px}.rt-count{font-size:12.5px;color:var(--tx2)}
+@media (max-width:440px){#retouch .tb-title{display:none}#retouch .gseg{margin-right:auto;margin-left:4px}}

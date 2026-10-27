@@ -95,7 +95,7 @@
   $('busyCancel').onclick = () => { if (busyCancel) busyCancel(); };
 
   /* ================= ĐIỀU HƯỚNG ================= */
-  const views = { home: $('home'), editor: $('editor'), face: $('face') };
+  const views = { home: $('home'), editor: $('editor'), face: $('face'), retouch: $('retouch') };
   function showView(name) {
     for (const k in views) views[k].classList.toggle('active', k === name);
     document.querySelectorAll('.home-tabs button').forEach(b => b.classList.toggle('on', b.dataset.go === (name === 'editor' ? mode : name)));
@@ -107,6 +107,8 @@
       const f = $('faceFrame');
       if (!f.getAttribute('src')) f.src = 'https://yosimura99.github.io/doi-mat/';
       showView('face');
+    } else if (where === 'retouch') {
+      showView('retouch'); if (S.FaceUI) S.FaceUI.show();
     } else { setMode(where); showView('editor'); requestAnimationFrame(() => { scheduleRender(); }); }
     if (push) { const hs = where === 'home' ? '' : '#' + where; if (location.hash !== hs) history.pushState(null, '', hs || location.pathname); }
   }
@@ -1127,6 +1129,22 @@
     }
   }
   window.App.exportPhoto = exportPhoto;
+  // Chỉnh Ảnh → Chỉnh Mặt: đưa ảnh đã chỉnh (độ phân giải gốc) sang công cụ Chỉnh Mặt
+  async function photoToRetouch() {
+    if (!photo || !photo.full) { go('retouch'); return; }
+    busy('Đang chuyển sang Chỉnh Mặt…'); await nextFrame();
+    try {
+      renderer.setSource(photo.full, photo.full.width, photo.full.height);
+      const [W, H] = fullPhotoSize();
+      renderer.render(cur.params, W, H, { seed: 0 });
+      const out = document.createElement('canvas'); out.width = W; out.height = H;
+      out.getContext('2d').drawImage(renderer.canvas, 0, 0);
+      renderer.freePool(); attachSource(); scheduleRender();
+      unbusy();
+      await window.App.retouchOpen(out, photo.name || 'anh');
+    } catch (e) { unbusy(); renderer.freePool(); attachSource(); scheduleRender(); info('Không chuyển được', String(e.message || e)); }
+  }
+  $('btnToRetouch').onclick = photoToRetouch;
   const vexp = { res: 1080, q: 1 };
   function videoTargetLong(res) {
     const [fw, fh] = renderer.outSize(cur.params, 1e9);
@@ -1228,9 +1246,10 @@
     if (isIOS && !standalone) $('installHint').hidden = false;
     setMode('photo');
     const start = (location.hash || '').slice(1);
-    if (['photo', 'video', 'face'].includes(start)) go(start, false); else showView('home');
+    if (['photo', 'video', 'face', 'retouch'].includes(start)) go(start, false); else showView('home');
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => { });
     window.App.ready = true;
   }
+  window.App.ui = { h, slider, toast, modal, info, sheet, deliver, downscale, decodePhoto, go, nextFrame };
   init();
 })();

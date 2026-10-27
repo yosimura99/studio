@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <title>Studio Của Khang</title>
-<meta name="description" content="Chỉnh ảnh, chỉnh video và ghép mặt ngay trên điện thoại. Ảnh không rời khỏi máy.">
+<meta name="description" content="Chỉnh ảnh, chỉnh video, chỉnh mặt và ghép mặt ngay trên điện thoại. Ảnh không rời khỏi máy.">
 <meta name="theme-color" content="#0e0e10">
 <meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,7 +25,7 @@
       <img src="icons/icon-192.png" alt="" class="home-logo">
       <div>
         <h1>Studio Của Khang</h1>
-        <p>Chỉnh ảnh, video và ghép mặt ngay trên máy — không tải lên máy chủ.</p>
+        <p>Chỉnh ảnh, video, chỉnh mặt và ghép mặt ngay trên máy — không tải lên máy chủ.</p>
       </div>
     </header>
     <div class="tiles">
@@ -36,6 +36,10 @@
       <button class="tile t-video" data-go="video">
         <span class="tile-ic" data-icon="video"></span>
         <b>Chỉnh Video</b><span class="tile-sub">Màu, công thức, cắt đoạn, tốc độ, nhạc nền</span>
+      </button>
+      <button class="tile t-retouch" data-go="retouch">
+        <span class="tile-ic" data-icon="retouch"></span>
+        <b>Chỉnh Mặt</b><span class="tile-sub">Mịn da, trang điểm, dáng mặt, râu &amp; nét nam</span>
       </button>
       <button class="tile t-face" data-go="face">
         <span class="tile-ic" data-icon="face"></span>
@@ -53,6 +57,7 @@
     <button class="on" data-go="home"><span data-icon="home"></span>Trang chủ</button>
     <button data-go="photo"><span data-icon="photo"></span>Ảnh</button>
     <button data-go="video"><span data-icon="video"></span>Video</button>
+    <button data-go="retouch"><span data-icon="retouch"></span>Chỉnh mặt</button>
     <button data-go="face"><span data-icon="face"></span>Ghép mặt</button>
   </nav>
 </div>
@@ -66,6 +71,7 @@
     <button class="ib" id="btnUndo" aria-label="Hoàn tác" disabled><span data-icon="undo"></span></button>
     <button class="ib" id="btnRedo" aria-label="Làm lại" disabled><span data-icon="redo"></span></button>
     <button class="ib" id="btnCompare" aria-label="So sánh trước/sau"><span data-icon="compare"></span></button>
+    <button class="ib" id="btnToRetouch" aria-label="Mở trong Chỉnh Mặt" title="Chỉnh Mặt"><span data-icon="retouch"></span></button>
     <button class="pill" id="btnExport">Lưu</button>
   </header>
   <main class="stage" id="stage">
@@ -100,6 +106,40 @@
   </aside>
 </div>
 
+<!-- ================= CHỈNH MẶT ================= -->
+<div id="retouch" class="view">
+  <header class="topbar">
+    <button class="ib" id="rtBack" aria-label="Về trang chủ"><span data-icon="back"></span></button>
+    <div class="tb-title">Chỉnh Mặt</div>
+    <div class="gseg" id="rtGender" hidden><button data-g="f" class="on">Nữ</button><button data-g="m">Nam</button></div>
+    <button class="ib" id="rtOpen" aria-label="Mở ảnh"><span data-icon="open"></span></button>
+    <button class="ib" id="rtUndo" aria-label="Hoàn tác" disabled><span data-icon="undo"></span></button>
+    <button class="ib" id="rtRedo" aria-label="Làm lại" disabled><span data-icon="redo"></span></button>
+    <button class="ib" id="rtReset" aria-label="Đặt lại"><span data-icon="reset"></span></button>
+    <button class="ib" id="rtCompare" aria-label="So sánh trước/sau"><span data-icon="compare"></span></button>
+    <button class="pill" id="rtSave">Lưu</button>
+  </header>
+  <main class="stage" id="rtStage">
+    <div class="canvas-box" id="rtBox" hidden>
+      <canvas id="rtGl"></canvas>
+      <div class="rt-faces" id="rtFaces"></div>
+      <div class="split" id="rtSplit" hidden><div class="split-line"></div><div class="split-knob">‹ ›</div><span class="tag l">Trước</span><span class="tag r">Sau</span></div>
+      <div class="hold-tag" id="rtHold" hidden>Ảnh gốc</div>
+    </div>
+    <div class="empty" id="rtEmpty">
+      <div class="empty-ic" data-icon="retouch"></div>
+      <p>Chọn một ảnh chân dung để làm đẹp</p>
+      <button class="pill big" id="rtPick">Chọn ảnh</button>
+      <small>Nhận diện khuôn mặt và chỉnh sửa ngay trên máy, ảnh không tải lên Internet.</small>
+    </div>
+    <div class="busy" id="rtBusy" hidden><div class="spin"></div><p id="rtBusyText">Đang xử lý…</p></div>
+  </main>
+  <aside class="panel">
+    <section class="panel-body" id="rtBody"></section>
+    <nav class="tabs" id="rtTabs"></nav>
+  </aside>
+</div>
+
 <!-- ================= GHÉP MẶT ================= -->
 <div id="face" class="view">
   <header class="topbar">
@@ -120,6 +160,7 @@
 <input type="file" id="filePhoto" accept="image/*,.heic,.heif" hidden>
 <input type="file" id="fileVideo" accept="video/*" hidden>
 <input type="file" id="filePreset" multiple hidden>
+<input type="file" id="fileRetouch" accept="image/*,.heic,.heif" hidden>
 <input type="file" id="fileMusic" accept="audio/*" hidden>
 
 <script src="js/icons.js"></script>
@@ -129,6 +170,10 @@
 <script src="js/store.js"></script>
 <script src="vendor/mp4-muxer.js"></script>
 <script src="js/video.js"></script>
+<script src="js/face-lm.js"></script>
+<script src="js/face-fx.js"></script>
+<script src="js/face-presets.js"></script>
 <script src="js/app.js"></script>
+<script src="js/face-ui.js"></script>
 </body>
 </html>

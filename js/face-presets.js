@@ -20,6 +20,21 @@
       { id: 'f_bride', name: 'Cô dâu', p: { smooth: 58, bright: 24, white: 18, acne: 75, dark: 60, lip: 55, lipColor: '#d4566a', lipFinish: 'gloss', blush: 30, blushColor: '#f29a9a', shadow: 30, shadowColor: '#c99a7e', liner: 34, lashes: 45, highlight: 34, contour: 18, eyeBright: 30, teeth: 40, brow: 24 } },
       { id: 'f_douyin', name: 'Douyin / Trung Quốc', p: { smooth: 65, white: 38, bright: 24, acne: 75, dark: 55, lip: 65, lipColor: '#d8314a', lipFinish: 'gloss', blush: 34, blushColor: '#f58c99', shadow: 40, shadowColor: '#d68a7e', liner: 44, lashes: 55, eyes: 24, slim: 30, vline: 30, noseSlim: 25, noseLift: 20, mouth: -10, highlight: 34, eyeBright: 34, teeth: 30 } },
       { id: 'f_vline', name: 'Mặt V-line', p: { slim: 45, vline: 55, smooth: 30, acne: 40, eyes: 10, noseSlim: 15, contour: 24 } },
+      /* Lấy cảm hứng từ mô tả công khai của bộ lọc FaceApp (faceapp.com/blog/impression, trang App Store) – chỉ dùng thông số của app này */
+      { id: 'f_silk', name: 'Mịn lụa', p: { smooth: 70, acne: 80, dark: 55, bright: 14, oil: 35, highlight: 18, eyeBright: 14, lip: 18, lipColor: '#cf6f74', lipFinish: 'gloss' } },
+      { id: 'f_fresh', name: 'Làm mới', p: { smooth: 40, acne: 60, dark: 45, bright: 16, eyeBright: 22, teeth: 28, blush: 12, blushColor: '#f2a08f', lip: 20, lipColor: '#cc6a70', lipFinish: 'gloss', brow: 10 } },
+      { id: 'f_glow', name: 'Rạng rỡ (Glow)', p: { smooth: 50, acne: 65, dark: 50, bright: 26, white: 12, highlight: 48, blush: 22, blushColor: '#f4a29a', lip: 30, lipColor: '#d8707a', lipFinish: 'gloss', eyeBright: 26 } },
+      { id: 'f_cute', name: 'Dễ thương', p: { smooth: 50, acne: 60, dark: 45, bright: 18, eyes: 26, slim: 16, vline: 12, mouth: -8, smile: 25, blush: 40, blushColor: '#ff9fb0', lip: 40, lipColor: '#ef7488', lipFinish: 'gloss', eyeBright: 24, lashes: 20 } },
+      { id: 'f_bigeye', name: 'Mắt to long lanh', p: { eyes: 38, eyeBright: 40, lashes: 40, liner: 30, smooth: 30, acne: 45, dark: 45 } },
+      { id: 'f_glance', name: 'Ánh nhìn', p: { eyeBright: 45, eyes: 14, liner: 45, lashes: 50, shadow: 34, shadowColor: '#7d5a4c', brow: 28, smooth: 30, acne: 45, dark: 50 } },
+      { id: 'f_kiss', name: 'Môi hôn', p: { lip: 75, lipColor: '#cc2f4a', lipFinish: 'gloss', mouth: 8, eyes: 12, eyeBright: 28, lashes: 35, liner: 28, smooth: 40, acne: 55, dark: 40 } },
+      { id: 'f_hollywood', name: 'Hollywood', p: { smooth: 55, acne: 70, dark: 55, contour: 45, highlight: 40, brow: 30, liner: 40, lashes: 45, shadow: 30, shadowColor: '#8f6450', lip: 50, lipColor: '#b9474f', lipFinish: 'matte', blush: 18, blushColor: '#d98273', teeth: 40, eyeBright: 28, sharp: 15, noseSlim: 12 } },
+      { id: 'f_movie', name: 'Điện ảnh', p: { smooth: 40, acne: 60, dark: 50, sharp: 30, contour: 40, highlight: 26, brow: 30, liner: 34, lashes: 30, shadow: 22, shadowColor: '#6e5246', lip: 36, lipColor: '#a8525a', lipFinish: 'matte', eyeBright: 20 } },
+      { id: 'f_muse', name: 'Tạp chí (Muse)', p: { smooth: 50, acne: 65, dark: 55, contour: 55, highlight: 45, brow: 38, browColor: '#2f2420', liner: 50, lashes: 40, shadow: 35, shadowColor: '#6d4c40', lip: 55, lipColor: '#8f3a3f', lipFinish: 'matte', noseSlim: 16, slim: 12, sharp: 20 } },
+      { id: 'f_grace', name: 'Thanh lịch', p: { smooth: 45, acne: 60, dark: 50, bright: 12, brow: 22, liner: 22, lashes: 25, shadow: 20, shadowColor: '#b08470', lip: 38, lipColor: '#c0606a', lipFinish: 'matte', blush: 18, blushColor: '#eb9a90', highlight: 22, contour: 15 } },
+      { id: 'f_passion', name: 'Cuốn hút', p: { smooth: 45, acne: 60, dark: 55, shadow: 60, shadowColor: '#5a3a3c', liner: 65, lashes: 60, lip: 80, lipColor: '#9c1530', lipFinish: 'matte', contour: 45, highlight: 30, brow: 38, eyeBright: 30, eyes: 10 } },
+      { id: 'f_crystal', name: 'Pha lê lấp lánh', p: { smooth: 50, acne: 60, dark: 50, shadow: 55, shadowColor: '#d8b4d8', highlight: 50, lashes: 35, liner: 20, lip: 45, lipColor: '#e07a92', lipFinish: 'gloss', blush: 22, blushColor: '#f7aac0', eyeBright: 30 } },
+      { id: 'f_nomake', name: 'Mặt mộc mịn', p: { smooth: 45, acne: 75, dark: 55, bright: 10, oil: 40, eyeBright: 16, teeth: 20 } },
     ],
     m: [
       { id: 'm_nat', name: 'Tự nhiên nam', p: { smooth: 25, acne: 45, dark: 30, oil: 30, eyeBright: 14, teeth: 20, brow: 8 } },
@@ -30,6 +45,12 @@
       { id: 'm_kr', name: 'Hàn Quốc nam', p: { smooth: 50, white: 24, bright: 18, acne: 75, dark: 50, oil: 50, slim: 15, vline: 10, eyes: 8, brow: 24, browColor: '#2f2622', teeth: 30, lip: 12, lipColor: '#c07070', lipFinish: 'gloss' } },
       { id: 'm_tan', name: 'Da nâu thể thao', p: { tan: 55, sharp: 30, contour: 35, oil: 45, jaw: 25, smooth: 20, acne: 40, highlight: 15 } },
       { id: 'm_gent', name: 'Lịch lãm', p: { smooth: 35, acne: 60, dark: 45, oil: 50, browThick: 24, jaw: 25, contour: 30, sharp: 25, teeth: 30, beard: 25, beardStyle: 'stubble' } },
+      { id: 'm_fresh', name: 'Làm mới nam', p: { smooth: 30, acne: 60, dark: 45, oil: 45, bright: 10, eyeBright: 20, teeth: 25, brow: 10 } },
+      { id: 'm_smooth', name: 'Mịn da nam', p: { smooth: 55, acne: 80, dark: 55, oil: 60, bright: 8, eyeBright: 14 } },
+      { id: 'm_hollywood', name: 'Hollywood nam', p: { smooth: 35, acne: 65, dark: 50, oil: 55, jaw: 35, sharp: 30, contour: 40, highlight: 20, browThick: 22, teeth: 40, eyeBright: 24 } },
+      { id: 'm_movie', name: 'Điện ảnh nam', p: { smooth: 25, acne: 50, dark: 45, oil: 40, sharp: 40, contour: 45, jaw: 30, browThick: 25, tan: 20, beard: 30, beardStyle: 'stubble' } },
+      { id: 'm_vline', name: 'Mặt V nam', p: { slim: 30, vline: 35, jaw: 10, smooth: 25, acne: 45, oil: 40, noseSlim: 10 } },
+      { id: 'm_beard', name: 'Râu rậm', p: { beard: 90, beardStyle: 'full', browThick: 30, jaw: 30, sharp: 25, oil: 30, smooth: 15 } },
     ]
   };
   /** Trộn kiểu có sẵn với cường độ amt (0..100) */
